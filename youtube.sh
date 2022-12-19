@@ -1,5 +1,5 @@
 #! /bin/bash
-#!/usr/bin/env
+#! /usr/bin/env
 # Autor: kalicx
 
 # Using Youtube-dlp
