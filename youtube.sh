@@ -1,42 +1,41 @@
-#!/bin/bash
+#! /bin/bash
 #!/usr/bin/env
 # Autor: kalicx
 
+# Using Youtube-dlp
+
+#yt-dlp -f 'ba' -x --audio-format flac <link>
+#yt-dlp -f 'ba' -x --audio-format flac ytsearch:"<search>"
+
 clear
-
-echo "------------------------------------------------------------"
-echo "|          Skripta za preuzimanje Youtube fajlova          |"
-echo "------------------------------------------------------------"
-echo "|  Autor: kalicx                                           |"
-echo "------------------------------------------------------------"
+echo "---------------  Youtube Music Downloader  ---------------"
+echo "---------------       Autor:  kalicx       ---------------"
+echo "----------------------------------------------------------"
+echo "Select download option:"
+echo "1. Download by link"
+echo "2. Download by search"
+echo "----------------------------------------------------------"
 sleep 1
-echo "|  Unesi broj linkova                                      |"
-read broj
-echo "------------------------------------------------------------"
+read -p "Select option [1] or [2]: " url
+echo "----------------------------------------------------------"
 
-while true
-do
-    read -a URL
-    for (( i=0; i<$broj; i++ ))
-    do
-        clear
-        echo "------------------------------------------------------------"
-        echo "| Preuzimam fajl: ${URL[$i]} ...                          |"
-        youtube-dl -x --audio-format mp3 ${URL[$i]}
-        echo "------------------------------------------------------------"
-done
-
-for (( i=0; i<$broj; i++ ))
-    do
-        #clear
-        echo " Preuzeli ste fajl: ${URL[$i]} "n
-done
-echo "------------------------------------------------------------"
-echo "| Da li zelite da preuzmete jos jedan fajl? (d/n)          |"
-read answer
-if [ "$answer" != "${answer#[Dd]}" ] ;then
-    ./youtube_test.sh
+if [ $url = 1 ]
+then
+    read -p "Enter the link: " url
+    yt-dlp -f 'ba' -x --audio-format flac $url
+elif [ $url = 2 ]
+then
+    read -p "Enter the name of song: " url
+    yt-dlp -f 'ba' -x --audio-format flac ytsearch:"$url"
 else
-    break
+    echo "Invalid option!"
+    echo "Programm will be restarted ..."
+    echo "----------------------------------------------------------"
+    sleep 3
+    ./youtube-update.sh
+    exit
 fi
-done
+
+echo "----------------------------------------------------------"
+echo "------------------  Download  complete  ------------------"
+echo "----------------------------------------------------------"
