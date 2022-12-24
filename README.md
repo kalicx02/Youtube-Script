@@ -1,2 +1,2 @@
 # Youtube-Script
-Tool for downloading Youtube videos in .mp3 format using youtube.dlp
+Tool for downloading Youtube videos as music files using youtube.dlp
